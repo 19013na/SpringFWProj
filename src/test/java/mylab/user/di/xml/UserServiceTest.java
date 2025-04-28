@@ -1,10 +1,6 @@
 package mylab.user.di.xml;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import javax.annotation.Resource;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,15 +12,24 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ContextConfiguration(locations = "classpath:mylab-user-di.xml")
 public class UserServiceTest {
 	
-	@Resource(name="userService")
-	UserService service;
+	@Autowired
+	private UserService service;
 	
 	@Test
 	void userTest() {
+		// UserRepository 확인
+		// userService.getUserRepository -> UserRepository
 		assertNotNull(service);
 		assertNotNull(service.getUserRepository());
+		
 		assertEquals("MySQL", service.getUserRepository().getDbType());
+		
+		// SecurityService(어노테이션으로 주입) 확인
 		assertNotNull(service.getSecurityService());
+				
+		
+		// 기능 테스트
 		assertTrue(service.registerUser("u001", "alice", "alice1"));
+		assertFalse(service.registerUser("user2", "김철수", ""));
 	}
 }

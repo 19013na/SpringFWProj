@@ -14,7 +14,7 @@
 	<!-- Hello 클래스를 Spring Bean으로 설정 -->
 	<!-- scope default값이 singleton -->
 	<bean id="hello" class="myspring.di.xml.Hello" scope="singleton">
-		<property name="name" value="스프링"/>
+		<property name="name" value="${myName1}"/>
 		<property name="printer" ref="strPrinter"/>
 	</bean>
 	

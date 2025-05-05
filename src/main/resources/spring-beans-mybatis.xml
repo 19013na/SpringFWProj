@@ -7,7 +7,10 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<!-- dao, service auto scanning하도록 설정 -->
-	<context:component-scan base-package="**.service,**.dao" />
+	<!--<context:component-scan base-package="**.service,**.dao" />-->
+	<context:component-scan base-package="mylab.customer.service,mylab.customer.dao" />
+	
+	
 
 	<context:property-placeholder location="classpath:values.properties"/>
 	
@@ -29,7 +32,8 @@
 		<property name="mapperLocations">
 			<list>
 				<!--  classpath:UserMapoper.xml로 설정하지 않고 *Mapper.xml로 쓸 수 있음. Mapper로 끝나는 xml파일 모두 가져옴 -->
-				<value>classpath:mybatis/*Mapper.xml</value>
+				<!-- <value>classpath:mybatis/*Mapper.xml</value> -->
+				<value>classpath:mybatis/CustomerMapper.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -41,7 +45,7 @@
 	
 	<!-- MapperScannerConfigurer 설정 Mapper 인터페이스를 스캐닝 하는 역할 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="**.dao.mapper"/>
+		<property name="basePackage" value="mylab.customer.dao.mapper"/>
 		<property name="sqlSessionTemplateBeanName" value="sqlSession" /> 
 	</bean>
 </beans>

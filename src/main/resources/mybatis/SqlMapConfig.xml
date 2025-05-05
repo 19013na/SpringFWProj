@@ -9,10 +9,13 @@
          <setting name="logImpl" value="LOG4J2"/>
     </settings>
     
-	<typeAliases>
+	<!-- <typeAliases>
 		<typeAlias alias="User" type="myspring.user.vo.UserVO" />
+	</typeAliases> -->
+	
+	<typeAliases>
+		<typeAlias alias="Customer" type="mylab.customer.vo.CustomerVO" />
 	</typeAliases>
-
 </configuration>
 
 
